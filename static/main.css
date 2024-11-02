@@ -1,0 +1,15 @@
+#title {
+	text-align: right;
+}
+
+#login-form {
+	margin-top: 40vh;
+}
+
+form {
+	max-width: 600px;
+}
+
+main .container {
+	max-width: 800px;
+}

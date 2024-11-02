@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Zwack's Locker Room</title>
+  </head>
+  <body>
+    <header class="container">
+      <h1>Lockers</h1>
+    <header/>
+    <main class="container">
+      <div class="container">
+        <section>
+          <h2>Create a new Locker</h2>
+          <form action="/create-locker", method="POST">
+            <fieldset role="group">
+              <input type="text" value="{{ locker_code }}" name="code" readonly />
+              <input type="submit" value="Make Locker" />
+            </fieldset>
+          </form>
+        </section>
+        <section>
+          <h2>Previous Lockers</h2>
+          {% for locker in lockers %}
+            <a href="/l/{{locker.code}}"><article class="grid">
+              <h3>{{locker.code}}</h3>
+              <p>Expires in on {{ locker.expire_time }}</p>
+            </article></a>
+          {% endfor %}
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

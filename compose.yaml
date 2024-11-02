@@ -1,0 +1,17 @@
+services:
+  locker:
+    build: 
+      context: .
+      args:
+        DOMAIN: "locker.local"
+        PASSWORD: ""
+    ports:
+      - "80:80"
+    depends_on:
+      - redis
+  redis:
+    image: "redis/redis-stack-server"
+
+secrets:
+  PASSWORD:
+    environment: PASSWORD

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    >
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <title>Locker {{ locker.code }}</title>
+  </head>
+  <body>
+    <header class="container">
+      <h1>Files</h1>
+    <header/>
+    <main class="container">
+      <div class="container">
+        <section>
+          <h2>Locker Files</h2>
+          {% if not files %}
+          <p>Erm, no files yet. Try uploading some and reload.</p>
+          {% endif %}
+          {% for file in files %}
+            <a href="/l/{{locker.code}}/{{file.file_hash}}"><article class="grid">
+              <h3>{{file.filename}}</h3>
+              <p>{{file.file_size}} Bytes</p>
+              <p>Uploaded on {{ file.upload_date }}</p>
+            </article></a>
+          {% endfor %}
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
