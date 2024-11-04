@@ -28,8 +28,9 @@ RUN apt clean
 RUN pip install --no-cache-dir -r requirements.txt --break-system-packages
 
 ARG PASSWORD
-RUN test -n ${PASSWORD}
-RUN python3 -c "import bcrypt; import os; print(bcrypt.hashpw('${PASSWORD}'.encode(), bcrypt.gensalt()).decode())" > .passwd
+ENV PASSWORD=$PASSWORD
+# RUN test -n ${PASSWORD}
+# RUN python3 -c "import bcrypt; import os; print(bcrypt.hashpw('${PASSWORD}'.encode(), bcrypt.gensalt()).decode())" > .passwd
 
 COPY Locker.conf /etc/apache2/sites-available/locker.conf
 

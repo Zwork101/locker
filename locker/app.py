@@ -26,8 +26,7 @@ TEMPORARY_DIRECTORY: str = environ.get("TMP_DIR", "")
 if not TEMPORARY_DIRECTORY:
 	TEMPORARY_DIRECTORY = "/var/www/Locker/tmp"
 
-with open("/var/www/Locker/.passwd") as f:
-	PASSWORD = f.read().strip().encode()
+PASSWORD = environ["PASSWORD"].encode()
 
 if os.listdir(TEMPORARY_DIRECTORY):
 	os.rmdir(TEMPORARY_DIRECTORY)
