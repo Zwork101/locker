@@ -1,3 +1,4 @@
+from base64 import b64decode
 from string import ascii_lowercase, ascii_uppercase, digits
 from datetime import datetime, timedelta
 from hashlib import sha256
@@ -26,7 +27,7 @@ TEMPORARY_DIRECTORY: str = environ.get("TMP_DIR", "")
 if not TEMPORARY_DIRECTORY:
 	TEMPORARY_DIRECTORY = "/var/www/Locker/tmp"
 
-PASSWORD = environ["PASSWORD"].encode()
+PASSWORD = b64decode(environ["PASSWORD"])
 
 if os.listdir(TEMPORARY_DIRECTORY):
 	os.rmdir(TEMPORARY_DIRECTORY)
